@@ -39,6 +39,32 @@ I tried centreon and Nagios and I found it to complex for what it is, I look at 
 - Configuration pages : To setup the logs, the watchers and the parsers.
 - Make depolyements packages : make it easy to install.
 
+# Reporting Issue
+
+At the start I'll have a lot of issues for all the todos. If you find a bug, please report it with more than less information if applicable:
+- OS version (Name and kernel)
+- Python version
+- Service version (Apache, nginx or postfix)
+- Error logs and backtracks
+- Anything you thing could be usefull
+- In a neat and ordered Issue post please
+
+# Contributors checklist
+
+If you'd like to help. You welcome just follow those small steps :
+- Fork it
+- Make a branch per feature
+- Make tests and run them for wath you added
+- Add your name to contrubutors list (Please make it at the same time as your contribution, it could be nice not to have pull request only for a name, I know it's important so don't forget it!)
+- Do your changes. (Yes after writing the tests)
+- Comment what you did if it's not explicite. (Yes I write after making the changes, I know must of us don't comment on the fly)
+- If it's not explicite please make it.
+- If this add User side stuff, please add documentation. (I'm lazy and don't want to write doc for what you added...)
+- Make a pull request.
+- I may argue a little and review your code.
+- If all is good, Yeah pointerDog is now better thanks to you! I'll be very thankful!
+
+
 # BSD License
 
 Copyright (c) 2014, Alexandre Lessard AKA Belug
