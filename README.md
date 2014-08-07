@@ -25,6 +25,8 @@ On top of that I'm a DevOp, I like it when everything is running smoothly, so I 
 - Database watcher : Check if the database is still up.... [Maybe on client side!]
 - Mail{relay, box, filter, ...} watcher : Look at all te part of mail service to determine if everything is working good.
 - System updates watchers : Check for updates for the OS, if possible get the changelog to help sysadmin have the knowledge of what the are doing. [This will need to be multiple packages to support all the platforms redhat based, debian based, arch based, BSD based... , Windows?, Mac? Solaris?]
+- System watcher : Disk space, load, memory, installed softwares, IP adresses, network load and uptime.
+- Virtualenv | rvm watcher : Valide the state of those environements to check if there's update to do.
 - Log catcher : Client side script in a cron job to collect logs and send it to pointerDog.
 - Log analyser : Small web interface to setup de logs to get and the format to parse it.
 - Log parser : Parse logs using REGEX made by the user and record it in Mongodb.
