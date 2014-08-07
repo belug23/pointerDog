@@ -1,10 +1,12 @@
-#PointerDog
-
 Rigth now it's a starting project so it's nothing!
+
+#PointerDog
 
 pointerDog is a collection of tool and a website to collect information about your servers to help you find what is wrong, hping to find it before clients call. The project is made in python Pyramid and has  parts to be installed on servers and a part to be installed as a service.
 
 I tried centreon and Nagios and I found it to complex for what it is, I look at Cabot and it's missing some key elements. I've looked at Logstash and tought it would be nice to combine it with something like Nagios and combine log analysing with event happening. So I told my self, le make something that you'll use and maybe others will come.
+
+On top of that I'm a DevOp, I like it when everything is running smoothly, so I can code more! I do like neat UX and think that there's not enough neat interfaces for sysadmins.
 
 #Requirements
 
@@ -22,21 +24,23 @@ I tried centreon and Nagios and I found it to complex for what it is, I look at 
 - Website watcher : Check if websites are still responding, may be by watching the OPTION request?
 - Database watcher : Check if the database is still up.... [Maybe on client side!]
 - Mail{relay, box, filter, ...} watcher : Look at all te part of mail service to determine if everything is working good.
-- System updates watchers : Check for updates for the OS, if possible get the changelog to help sysadmin have the knowledge of what the are doing. [This will need to be multiple packages to support all the platforms redhat based, debian based, arch based,... , Windows?, Mac? Solaris?]
+- System updates watchers : Check for updates for the OS, if possible get the changelog to help sysadmin have the knowledge of what the are doing. [This will need to be multiple packages to support all the platforms redhat based, debian based, arch based, BSD based... , Windows?, Mac? Solaris?]
 - Log catcher : Client side script in a cron job to collect logs and send it to pointerDog.
 - Log analyser : Small web interface to setup de logs to get and the format to parse it.
 - Log parser : Parse logs using REGEX made by the user and record it in Mongodb.
-- Log viewer : Web interface to show the logs and filter the result
+- Alert system : Send mails, sms or anything possible to the Sysadmin to warn it.
+- REST Api : To build external tools for monitoring.
+- Look for a neat design for the website interfaces.
+- Resume Page : To display wath is happening on your network at the moment.
+- Configuration pages : To setup the logs, the watchers and the parsers.
+- Log viewer : Web interface to show the logs and filter the result.
+- Log filtering tool : Easy to to add filters to your log. (Start with a tool on top of the page to add a manual filter, than double clic on a cell to filer for the content. i.e : Search in mail logs for a faulty entry for "toto@example.com" then double click on the the QUEUE ID and to filter only what happend to this transaction and remove the frist filter to see full detail of the transaction)
 - Event Analyser : Addon to the log viewer to combine result from a log file with other logs and event that happends on the network.
   - Example:
     - Event : Apache stopped responding. Show logs from apache and system of the minutes before  to catch what happend
     - Website got hacked : Show access and error logs to determine entry points.
     - Mail server Queue is huge : Show who send to how many when, to help see is a user was hacked.
     - Website busted bandwith limit : Calculate the download size for file from logs and show them in decreasing orders.
-- Alert system : Send mails, sms or anything possible to the Sysadmin to warn it.
-- REST Api : To build external tools for monitoring.
-- Resume Page : To display wath is happening on your network at the moment.
-- Configuration pages : To setup the logs, the watchers and the parsers.
 - Make depolyements packages : make it easy to install.
 
 # Reporting Issue
@@ -55,15 +59,14 @@ If you'd like to help. You welcome just follow those small steps :
 - Fork it
 - Make a branch per feature
 - Make tests and run them for wath you added
-- Add your name to contrubutors list (Please make it at the same time as your contribution, it could be nice not to have pull request only for a name, I know it's important so don't forget it!)
 - Do your changes. (Yes after writing the tests)
-- Comment what you did if it's not explicite. (Yes I write after making the changes, I know must of us don't comment on the fly)
+- Comment what you did if it's not explicite. (Yes it's after making the changes, I know must of us don't write comments on the fly)
 - If it's not explicite please make it.
 - If this add User side stuff, please add documentation. (I'm lazy and don't want to write doc for what you added...)
+- Add your name to contrubutors list (Please make it at the same time as your contribution, it could be nice not to have pull request only for a name, I know it's important for you, so don't forget it!)
 - Make a pull request.
 - I may argue a little and review your code.
 - If all is good, Yeah pointerDog is now better thanks to you! I'll be very thankful!
-
 
 # BSD License
 
