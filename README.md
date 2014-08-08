@@ -34,7 +34,7 @@ So thanks to Alex Gaynor for this talk : http://youtu.be/yvjmAYmYOj0 that came r
 #TODO
 
 - Write tests for all what follows.
-- AmIBlind Test : A test that il valid if the main server has accès to the network monitoring. Remember using Nagios all those alert emails after a netowrk crash at the office. Lets try to make pointerDog more intelligent.
+- AmIBlind Test : A test that il valid if the main server has accses to the network monitoring. Remember using Nagios all those alert emails after a network crash at the office. Lets try to make pointerDog more intelligent.
 - ICMP : Make a ICMP library to watch if servers ar up.
 - ICMP relay : Make a offsite ICMP watcher to make sure that it's not only your network that is down.. [Think about this more Belug!]
 - HTTP and HTTPS watcher : To check if webservers are still up.
