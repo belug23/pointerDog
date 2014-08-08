@@ -34,33 +34,33 @@ So thanks to Alex Gaynor for this talk : http://youtu.be/yvjmAYmYOj0 that came r
 #TODO
 
 - Write tests for all what follows.
-- AmIBlind Test : A test that il valid if the main server has accses to the network monitoring. Remember using Nagios all those alert emails after a network crash at the office. Lets try to make pointerDog more intelligent.
-- ICMP : Make a ICMP library to watch if servers ar up.
-- ICMP relay : Make a offsite ICMP watcher to make sure that it's not only your network that is down.. [Think about this more Belug!]
-- HTTP and HTTPS watcher : To check if webservers are still up.
-- Website watcher : Check if websites are still responding, may be by watching the OPTION request?
-- Database watcher : Check if the database is still up.... [Maybe on client side!]
-- Mail{relay, box, filter, ...} watcher : Look at all te part of mail service to determine if everything is working good.
-- System updates watchers : Check for updates for the OS, if possible get the changelog to help sysadmin have the knowledge of what the are doing. [This will need to be multiple packages to support all the platforms redhat based, debian based, arch based, BSD based... , Windows?, Mac? Solaris?]
-- System watcher : Disk space, load, memory, installed softwares, IP adresses, network load and uptime.
-- Virtualenv | rvm watcher : Valide the state of those environements to check if there's update to do.
-- Log catcher : Client side script in a cron job to collect logs and send it to pointerDog.
-- Log analyser : Small web interface to setup de logs to get and the format to parse it.
-- Log parser : Parse logs using REGEX made by the user and record it in Mongodb.
-- Alert system : Send mails, sms or anything possible to the Sysadmin to warn it.
-- REST Api : To build external tools for monitoring.
-- Look for a neat design for the website interfaces.
-- Resume Page : To display wath is happening on your network at the moment.
-- Configuration pages : To setup the logs, the watchers and the parsers.
-- Log viewer : Web interface to show the logs and filter the result.
-- Log filtering tool : Easy to to add filters to your log. (Start with a tool on top of the page to add a manual filter, than double clic on a cell to filer for the content. i.e : Search in mail logs for a faulty entry for "toto@example.com" then double click on the the QUEUE ID and to filter only what happend to this transaction and remove the frist filter to see full detail of the transaction)
+- AmIBlind Test : A test that il valid if the main server has accses to the network monitoring. Remember using Nagios all those alert emails after a network crash at the office. Lets try to make pointerDog more intelligent. [#1](/../../issues/1)
+- ICMP : Make a ICMP library to watch if servers are up. [#2](/../../issues/2)
+- ICMP relay : Make a offsite ICMP watcher to make sure that it's not only your network that is down.. [Think about this more Belug!] [#3](/../../issues/3)
+- HTTP and HTTPS watcher : To check if webservers are still up. [#4](/../../issues/4)
+- Website watcher : Check if websites are still responding, may be by watching the OPTION request? [#5](/../../issues/5)
+- Database watcher : Check if the database is still up.... [Maybe on the watched server side!] [#6](/../../issues/6)
+- Mail{relay, box, filter, ...} watcher : Look at all the part of mail service to determine if everything is working good. [#7](/../../issues/7)
+- System updates watchers : Check for updates for the OS, if possible get the changelog to help sysadmin have the knowledge of what the are doing. [This will need to be multiple packages to support all the platforms redhat based, debian based, arch based, BSD based... , Windows?, Mac? Solaris?] [#8](/../../issues/8)
+- System watcher : Disk space, load, memory, installed softwares, IP adresses, network load and uptime. [#9](/../../issues/9)
+- Virtualenv | rvm watcher : Valid the state of those environments to check if there's update to do. [#10](/../../issues/10)
+- Log catcher : Watched server side script in a cron job to collect logs and send it to pointerDog. [#11](/../../issues/11)
+- Log analyser : Small web interface to setup de logs to get and the format to parse it. [#12](/../../issues/12)
+- Log parser : Parse logs using REGEX made by the user and record it in Mongodb. [#13](/../../issues/13)
+- Alert system : Send mails, sms or anything possible to the Sysadmin to warn it. [#14](/../../issues/14)
+- REST Api : To build external tools for monitoring. [#15](/../../issues/15)
+- Look for a neat design for the website interfaces. [#16](/../../issues/16)
+- Summary Page : To display what is happening on your network at the moment. [#17](/../../issues/17)
+- Configuration pages : To setup the logs, the watchers and the parsers. [#18](/../../issues/18)
+- Log viewer : Web interface to show the logs and filter the result. [#19](/../../issues/19)
+- Log filtering tool : Easy to to add filters to your log. (Start with a tool on top of the page to add a manual filter, than double clic on a cell to filer for the content. i.e : Search in mail logs for a faulty entry for "toto@example.com" then double click on the the QUEUE ID and to filter only what happend to this transaction and remove the frist filter to see full detail of the transaction) [#20](/../../issues/20)
 - Event Analyser : Addon to the log viewer to combine result from a log file with other logs and event that happends on the network.
   - Example:
     - Event : Apache stopped responding. Show logs from apache and system of the minutes before  to catch what happend
     - Website got hacked : Show access and error logs to determine entry points.
     - Mail server Queue is huge : Show who send to how many when, to help see is a user was hacked.
-    - Website busted bandwith limit : Calculate the download size for file from logs and show them in decreasing orders.
-- Make depolyements packages : make it easy to install.
+    - Website busted bandwith limit : Calculate the download size for file from logs and show them in decreasing orders. [#21](/../../issues/21)
+- Make depolyements packages : make it easy to install. [#22](/../../issues/22)
 
 # Reporting Issue
 
