@@ -15,6 +15,22 @@ On top of that I'm a DevOp, I like it when everything is running smoothly, so I 
 - Mongodb-server
 - Install the modules from requirements.txt (It may be splitted one for the website and one for the server side apps)
 
+
+# The application design is MVCA
+
+Ok, MVCA is made up, since it's not yet a standard, but it's Model View Controller Abstarction. So you take a standard MVC and put all your bussiness logic in an abstraction, a set of class and function outside of MVC. So all your logic is independent of what your app is and when migrating from html pages to javascript REST api, you don't need to rewrite your logic, just the way you handle the http request. Plus it's easier for the tests monster and to debug.
+
+Exemple :
+
+    Action : Add a new Computer.
+    Controller : Get the resquest, grab the needed information [POST, current user] and create a new Computer Object.
+    Computer Object (Abstraction) : Take all the data he recived, validate it, interact with the model and return result (Positive or negative)
+    Controller : get the result, make the response and render if needed.
+
+It's simple, and it answer most of the questions that looks like "Do I put that in the controller or in the model?"
+
+So thanks to Alex Gaynor for this talk : http://youtu.be/yvjmAYmYOj0 that came right a the good moment for this project.
+
 #TODO
 
 - Write tests for all what follows.
