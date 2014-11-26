@@ -2,7 +2,7 @@ Rigth now it's a starting project so it's nothing!
 
 #PointerDog
 
-pointerDog is a collection of tool and a website to collect information about your servers to help you find what is wrong, hping to find it before clients call. The project is made in python Pyramid and has  parts to be installed on servers and a part to be installed as a service.
+pointerDog is a collection of tool and a website to collect information about your servers to help you find what is wrong, hping to find it before clients call. The project is made in python Django and has parts to be installed on servers and a part to be installed as a service.
 
 I tried centreon and Nagios and I found it to complex for what it is, I look at Cabot and it's missing some key elements. I've looked at Logstash and tought it would be nice to combine it with something like Nagios and combine log analysing with event happening. So I told my self, le make something that you'll use and maybe others will come.
 

@@ -1,4 +1,0 @@
-pntr_dog README
-
-
-
