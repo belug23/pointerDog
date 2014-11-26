@@ -1,0 +1,4 @@
+coverage
+django-discover-runner
+django-debug-toolbar
+Sphinx
