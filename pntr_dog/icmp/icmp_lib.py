@@ -12,6 +12,8 @@ import random
 from .icmp_exceptions import BadOSUserException
 
 ICMP_ECHO = 8
+#8bit, 8bit, U16bit, U16bit, 16bit
+pack_format = 'bbHHh'
 
 def get_checksum(packet):
 
@@ -35,9 +37,6 @@ def get_checksum(packet):
     return tmp_sum#csum
 
 def get_packet(id):
-    print(id)
-    #8bit, 8bit, U16bit, U16bit, 16bit
-    pack_format = 'bbHHh'
 
     #get 32bytes of char
     with open("/dev/urandom", 'rb') as f:
@@ -58,6 +57,7 @@ def get_packet(id):
     return header + data
 
 def icmp_call(ip_addr):
+    # print(ip_addr)
     icmp = socket.getprotobyname("icmp")
     id = os.getpid() & 0xFFFF
     packet = get_packet(id)
@@ -66,11 +66,38 @@ def icmp_call(ip_addr):
         sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
     else:
         raise BadOSUserException('Root')
-
-    #sock.connect((ip_addr, 7))
-    #icmp_response_handler(sock,id)
-
-    return False
+    sock.settimeout(3)
+    while packet:
+        chunk_size = sock.sendto(packet,(ip_addr, 7))
+        packet = packet[chunk_size:]
+    return icmp_response_handler(sock,id)
 
 def icmp_response_handler(sock,id):
-        pass
+    while True:
+        try:
+            recv_packet, addr = sock.recvfrom(1024)
+        except socket.timeout as e:
+            return False
+
+        # print(recv_packet)
+        header = recv_packet[20:28]
+        data = recv_packet[29:]
+        # print(header)
+        icmp_type, code, checksum, recv_id, seq = struct.unpack(pack_format, header)
+        # print((icmp_type, checksum, id, seq))
+        validation_header = struct.pack(pack_format, icmp_type, code, 0, recv_id, seq)
+        validation_checksum = get_checksum(validation_header+data)
+        #if checksum != validation_checksum:
+        #    print((checksum, validation_checksum))
+        #    raise BADChecksum('Unmatching checksums : %s and %s' % (checksum, validation_checksum))
+        #elif id == recv_id:
+        # print('--------validation--------')
+        if id == recv_id:
+            print('ok')
+            return True
+
+
+
+
+
+

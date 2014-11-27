@@ -55,7 +55,7 @@ class IcmpTestCase(TestCase):
         #Call a ICMP test on localhost
         is_alive = icmp_lib.icmp_call('127.0.0.1')
         #Check if it succedded
-        self.assertTrue(False)
+        self.assertTrue(is_alive)
 
     def test_icmp_fail(self):
         #Find a not responding IP address
