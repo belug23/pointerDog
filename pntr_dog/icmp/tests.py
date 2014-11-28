@@ -30,7 +30,7 @@ class IcmpTestCase(TestCase):
         #Get checksum
         checksum = icmp_lib.get_checksum(test_data)
         #Compare with valid checksum
-        self.assertEqual(checksum, 0xddf2)
+        self.assertEqual(checksum, 0xd22)
 
     def test_packet_creation(self):
         #create a packet
@@ -54,6 +54,12 @@ class IcmpTestCase(TestCase):
     def test_icmp_send(self):
         #Call a ICMP test on localhost
         is_alive = icmp_lib.icmp_call('127.0.0.1')
+        #Check if it succedded
+        self.assertTrue(is_alive)
+
+    def test_icmp_send_hostname(self):
+        #Call a ICMP test on localhost
+        is_alive = icmp_lib.icmp_call('solutionglobale.com')
         #Check if it succedded
         self.assertTrue(is_alive)
 

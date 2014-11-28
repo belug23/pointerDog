@@ -15,26 +15,16 @@ ICMP_ECHO = 8
 #8bit, 8bit, U16bit, U16bit, 16bit
 pack_format = 'bbHHh'
 
+def carry_around_add(a, b):
+    c = a + b
+    return (c & 0xffff) + (c >> 16)
+
 def get_checksum(packet):
-
-    tmp_sum = 0
-    count = len(packet)
-    i = 0
-
-    while count > 1:
-        tmp_sum += (packet[i] * 256) + packet[i+1]
-        i += 2
-        count -= 2
-
-    if count > 0:
-        tmp_sum += packet[i]
-        tmp_sum = tmp_sum & 0xffffffff
-
-    while(tmp_sum>>16):
-        tmp_sum = (tmp_sum & 0xffff) + (tmp_sum >> 16)
-
-    #csum = tmp_sum >> 8 | (tmp_sum << 8 & 0xff00)
-    return tmp_sum#csum
+   s = 0
+   for i in range(0, len(packet), 2):
+       w = packet[i] + (packet[i+1] << 8)
+       s = carry_around_add(s, w)
+   return ~s & 0xffff
 
 def get_packet(id):
 
@@ -43,6 +33,8 @@ def get_packet(id):
         data = f.read(32)
 
     # data = 32 * 'B'
+    # data = data.encode('utf-8')
+    # print(data)
 
     seq = 1
 
@@ -58,6 +50,8 @@ def get_packet(id):
 
 def icmp_call(ip_addr):
     # print(ip_addr)
+    ip_addr = socket.gethostbyname(ip_addr)
+    # print(ip_addr)
     icmp = socket.getprotobyname("icmp")
     id = os.getpid() & 0xFFFF
     packet = get_packet(id)
@@ -66,9 +60,9 @@ def icmp_call(ip_addr):
         sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
     else:
         raise BadOSUserException('Root')
-    sock.settimeout(3)
+    sock.settimeout(9)
     while packet:
-        chunk_size = sock.sendto(packet,(ip_addr, 7))
+        chunk_size = sock.sendto(packet,(ip_addr, 0))
         packet = packet[chunk_size:]
     return icmp_response_handler(sock,id)
 
@@ -85,16 +79,19 @@ def icmp_response_handler(sock,id):
         # print(header)
         icmp_type, code, checksum, recv_id, seq = struct.unpack(pack_format, header)
         # print((icmp_type, checksum, id, seq))
-        validation_header = struct.pack(pack_format, icmp_type, code, 0, recv_id, seq)
-        validation_checksum = get_checksum(validation_header+data)
+        # validation_header = struct.pack(pack_format, icmp_type, code, 0, recv_id, seq)
+        # validation_checksum = get_checksum(validation_header+data)
         #if checksum != validation_checksum:
         #    print((checksum, validation_checksum))
         #    raise BADChecksum('Unmatching checksums : %s and %s' % (checksum, validation_checksum))
         #elif id == recv_id:
         # print('--------validation--------')
-        if id == recv_id:
-            print('ok')
-            return True
+        if icmp_type == 0:
+            if id == recv_id:
+                # print('ok')
+                return True
+            else:
+                print('badwolf')
 
 
 
