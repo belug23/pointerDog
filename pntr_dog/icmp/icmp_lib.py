@@ -49,14 +49,12 @@ def get_packet(id):
     return header + data
 
 def icmp_call(ip_addr):
-    # print(ip_addr)
-    ip_addr = socket.gethostbyname(ip_addr)
-    # print(ip_addr)
+    # ip_addr = socket.gethostbyname(ip_addr)
     icmp = socket.getprotobyname("icmp")
     id = os.getpid() & 0xFFFF
     packet = get_packet(id)
     if os.getuid() == 0:
-        # if root do the perfect ping
+        # if root do the ping
         sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
     else:
         raise BadOSUserException('Root')
@@ -73,10 +71,8 @@ def icmp_response_handler(sock,id):
         except socket.timeout as e:
             return False
 
-        # print(recv_packet)
         header = recv_packet[20:28]
         data = recv_packet[29:]
-        # print(header)
         icmp_type, code, checksum, recv_id, seq = struct.unpack(pack_format, header)
         # print((icmp_type, checksum, id, seq))
         # validation_header = struct.pack(pack_format, icmp_type, code, 0, recv_id, seq)
@@ -85,13 +81,9 @@ def icmp_response_handler(sock,id):
         #    print((checksum, validation_checksum))
         #    raise BADChecksum('Unmatching checksums : %s and %s' % (checksum, validation_checksum))
         #elif id == recv_id:
-        # print('--------validation--------')
         if icmp_type == 0:
             if id == recv_id:
-                # print('ok')
                 return True
-            else:
-                print('badwolf')
 
 
 
