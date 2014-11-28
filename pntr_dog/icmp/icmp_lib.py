@@ -32,10 +32,6 @@ def get_packet(id):
     with open("/dev/urandom", 'rb') as f:
         data = f.read(32)
 
-    # data = 32 * 'B'
-    # data = data.encode('utf-8')
-    # print(data)
-
     seq = 1
 
     #See RFC792 "Echo or Echo reply message""
@@ -49,7 +45,6 @@ def get_packet(id):
     return header + data
 
 def icmp_call(ip_addr):
-    # ip_addr = socket.gethostbyname(ip_addr)
     icmp = socket.getprotobyname("icmp")
     id = os.getpid() & 0xFFFF
     packet = get_packet(id)
